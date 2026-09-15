@@ -1,0 +1,6 @@
+node_modules
+dist
+.size
+.wrangler
+.dev.vars
+*.session.json

@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "channel-watcher",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+  "durable_objects": {
+    "bindings": [{ "name": "WATCHER", "class_name": "ChannelWatcher" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["ChannelWatcher"] }],
+  "vars": {
+    // Optional. Every diff page is POSTed here, HMAC-signed with WEBHOOK_SECRET.
+    "WEBHOOK_URL": ""
+  }
+  // Secrets: ADMIN_SECRET, API_ID, WEBHOOK_SECRET (optional).
+  // Bootstrap-only secrets, delete after POST /bootstrap: MT_SESSION, CHANNEL_ID, ACCESS_HASH.
+}

@@ -1,0 +1,54 @@
+{
+  "name": "mtproto-workers",
+  "version": "0.1.0",
+  "description": "MTProto 2.0 client for Cloudflare Workers and Durable Objects: real Telegram RPCs from the edge, under the 10 ms CPU budget",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "check": "tsc --noEmit",
+    "test": "bun test",
+    "size": "cd examples/channel-watcher && wrangler deploy --dry-run --outdir ../../.size && gzip -9 -k -f ../../.size/index.js && ls -l ../../.size/index.js.gz",
+    "session": "bun run scripts/make-session.ts"
+  },
+  "keywords": [
+    "telegram",
+    "mtproto",
+    "cloudflare-workers",
+    "durable-objects",
+    "workerd",
+    "serverless",
+    "gramjs",
+    "mtcute"
+  ],
+  "dependencies": {
+    "@cryptography/aes": "^0.1.1",
+    "@mtcute/tl": "^223.0.0",
+    "@mtcute/tl-runtime": "^0.32.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250906.0",
+    "@types/bun": "^1.2.0",
+    "long": "^5.3.2",
+    "telegram": "^2.26.22",
+    "typescript": "^5.9.2",
+    "wrangler": "^4.37.1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
